@@ -2,13 +2,14 @@ from google.cloud import documentai_v1 as documentai
 from google.api_core.client_options import ClientOptions
 import os
 
-PROJECT_ID = "assistant-virtual-463018"
-LOCATION = "us"
-OCR_PROCESSOR_ID = "3148e56aec9b71ed"  # Document OCR
-EXTRACTOR_PROCESSOR_ID = "8358eae9b215b0ad"  # Custom Extractor
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = (
-    "assistant-virtual-463018-4f3563bb2363.json"
-)
+PROJECT_ID = os.getenv("GCP_PROJECT_ID")
+LOCATION = os.getenv("GCP_LOCATION", "us")
+OCR_PROCESSOR_ID = os.getenv("GCP_OCR_PROCESSOR_ID")
+EXTRACTOR_PROCESSOR_ID = os.getenv("GCP_EXTRACTOR_PROCESSOR_ID")
+
+GOOGLE_APPLICATION_CREDENTIALS = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+if GOOGLE_APPLICATION_CREDENTIALS:
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = GOOGLE_APPLICATION_CREDENTIALS
 
 
 def procesar_documento_ocr(content_bytes, mimetype):

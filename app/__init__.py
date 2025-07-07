@@ -19,7 +19,7 @@ def create_app():
         allow_headers=["Authorization", "Content-Type"],
     )
 
-    app.config["JWT_SECRET_KEY"] = "b7f$2K!9zQw@1xR8pL#eT6vN3sJ0uY5c"
+    app.config["JWT_SECRET_KEY"] = os.getenv("FLASK_SECRET_KEY")
     JWTManager(app)
 
     app.register_blueprint(auth_bp, url_prefix="/api/v1")
