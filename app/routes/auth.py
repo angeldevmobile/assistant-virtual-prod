@@ -444,6 +444,9 @@ def tts():
     if not text:
         return jsonify({"error": "No text provided"}), 400
 
+    # Elimina emojis antes de sintetizar
+    text = remove_emojis(text)
+
     client = texttospeech.TextToSpeechClient()
     synthesis_input = texttospeech.SynthesisInput(text=text)
     voice = texttospeech.VoiceSelectionParams(
