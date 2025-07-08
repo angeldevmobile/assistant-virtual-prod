@@ -1,7 +1,9 @@
 import gspread
 from google.oauth2.service_account import Credentials
+import os
 
-SERVICE_ACCOUNT_FILE = "assistant-virtual-463018-4f3563bb2363.json"
+SERVICE_ACCOUNT_FILE = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 
 credentials = Credentials.from_service_account_file(
